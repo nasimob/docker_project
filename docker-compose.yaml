@@ -1,6 +1,59 @@
-version: '3.8'
+version: '3'
 
 services:
+  yolo5:
+    image: yolo5_img
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+    env_file: .env  # Reference the .env file
+    ports:
+      - "8081:8081"
+    networks:
+      - mongoCluster
 
+  polybot:
+    image: bot_img
+    volumes:
+      - ~/.aws/credentials:/root/.aws/credentials
+    env_file: .env  # Reference the .env file
+    ports:
+      - "8443:8443"
+    networks:
+      - mongoCluster
+  mongo1:
+    image: mongo:5
+    command: mongod --replSet myReplicaSet --bind_ip localhost,mongo1
+    volumes:
+      - mongo_db1:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - mongoCluster
 
+  mongo2:
+    image: mongo:5
+    command: mongod --replSet myReplicaSet --bind_ip localhost,mongo2
+    volumes:
+      - mongo_db2:/data/db
+    ports:
+      - "27018:27017"
+    networks:
+      - mongoCluster
+  mongo3:
+    image: mongo:5
+    command: mongod --replSet myReplicaSet --bind_ip localhost,mongo3
+    volumes:
+      - mongo_db3:/data/db
+    ports:
+      - "27019:27017"
+    networks:
+      - mongoCluster
 
+networks:
+  mongoCluster:
+    driver: bridge
+
+volumes:
+  mongo_db1:
+  mongo_db2:
+  mongo_db3:

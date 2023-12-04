@@ -14,16 +14,7 @@ import pymongo
 #s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 # TODO (docker run -v ~/.aws/credentials:/root/.aws/credentials ...rest of the command)
 # Create an S3 client with a specific region
-s3 = boto3.client('s3', region_name='eu-north-1')
-
-# List all S3 buckets
-
-response = s3.list_buckets()
-
-# Print the bucket names just to make s3 is working
-print("S3 Buckets:")
-for bucket in response['Buckets']:
-    print(bucket['Name'])
+s3 = boto3.client('s3', region_name=os.environ['REGION'])
 
 # when running the docker image use the -e (env variable)
 # TODO  (docker run -e BUCKET_NAME=nasimob-bucket ... rest of the command)
@@ -34,6 +25,7 @@ images_bucket = os.environ['BUCKET_NAME']
 # This is the connection string specifying the MongoDB replica set configuration.
 # It includes the addresses and port numbers of the replica set members
 # (mongo1:27017, mongo2:27018, mongo3:27019) and the name of the replica set (myReplicaSet).
+
 mongo_client = pymongo.MongoClient('mongodb://mongo1:27017,mongo2:27018,mongo3:27019/?replicaSet=myReplicaSet')
 
 #This selects the MongoDB database named 'yolo5-db' from the connected MongoDB server.

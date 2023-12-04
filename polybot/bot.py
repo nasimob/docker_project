@@ -6,7 +6,7 @@ from telebot.types import InputFile
 import  boto3
 import requests
 
-s3 = boto3.client('s3', region_name='eu-north-1')
+s3 = boto3.client('s3', region_name=os.environ['REGION'])
 images_bucket = os.environ['BUCKET_NAME']
 class Bot:
 
@@ -111,7 +111,7 @@ class ObjectDetectionBot(Bot):
             s3.upload_file(str(path), images_bucket, str(photo_name))
             # TODO send a request to the `yolo5` service for prediction
 
-            prediction_url = f'http://172.23.0.5:8081/predict?imgName={str(photo_name)}'
+            prediction_url = f'http://docker_project-yolo5-1:8081/predict?imgName={str(photo_name)}'
             response = requests.post(prediction_url)
             if response.status_code == 200 :
                 response = self.clean_response(response.json())
