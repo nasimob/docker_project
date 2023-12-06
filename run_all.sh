@@ -12,7 +12,7 @@ echo "Running docker-compose..."
 docker compose up -d
 
 # Wait for Docker containers to start
-sleep 10
+sleep 20
 
 # Run init_rep_set.sh
 echo "Running init_rep_set.sh..."
