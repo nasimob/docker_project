@@ -11,13 +11,12 @@ import pymongo
 
 # Create an S3 client
 # Boto3 will look for credentials in the default location(~/.aws/credentials)
-#s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
-# TODO (docker run -v ~/.aws/credentials:/root/.aws/credentials ...rest of the command)
+# TODO mount ~/.aws/credentials:/root/.aws/credentials in the yolo5-container (docker-compose.yaml)
 # Create an S3 client with a specific region
 s3 = boto3.client('s3', region_name=os.environ['REGION'])
 
 # when running the docker image use the -e (env variable)
-# TODO  (docker run -e BUCKET_NAME=nasimob-bucket ... rest of the command)
+# TODO add BUCKET_NAME=ur-bucket-name in the .env file
 images_bucket = os.environ['BUCKET_NAME']
 
 # creating a Mongo_Client instance, representing a connection to a MongoDB server.

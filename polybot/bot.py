@@ -67,7 +67,7 @@ class Bot:
             self.send_text(msg['chat']['id'], f'Your original message: {text_content}')
         else :
             self.send_text(msg['chat']['id'], 'Message does not contain text.')
-        #self.send_text(msg['chat']['id'], f'Your original message: {msg["text"]}')
+
 
 
 class QuoteBot(Bot):
@@ -125,4 +125,4 @@ class ObjectDetectionBot(Bot):
             content_msg =msg['text']
             self.send_text(msg['chat']['id'], f'Your original message: {content_msg}\n send me a photo')
         else:
-            self.send_text(msg['chat']['id'], "i don't know man \n send me a photo")
+            self.send_text(msg['chat']['id'], "i don't know how to handle this  \n send me a photo")
