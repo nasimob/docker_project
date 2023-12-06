@@ -2,7 +2,7 @@ version: '3'
 
 services:
   yolo5:
-    image: yolo5_img
+    image: nasimob/yolo5_img
     volumes:
       - ~/.aws/credentials:/root/.aws/credentials
     env_file: .env  # Reference the .env file
@@ -12,7 +12,7 @@ services:
       - mongoCluster
 
   polybot:
-    image: bot_img
+    image: nasimob/bot_img
     volumes:
       - ~/.aws/credentials:/root/.aws/credentials
     env_file: .env  # Reference the .env file
