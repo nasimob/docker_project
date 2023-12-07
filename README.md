@@ -22,10 +22,10 @@ PolyBot is a Telegram bot that incorporates YOLO5 object detection capabilities.
 ## Getting Started
 1. Clone the repository:
 2. Create a .env file in the project root and add your environment variables:
-TELEGRAM_TOKEN=your-telegram-token
-TELEGRAM_APP_URL=https://your-app-url.com
-BUCKET_NAME=your-s3-bucket-name
-REGION=your-bucket-region
+TELEGRAM_TOKEN=your-telegram-token ,
+TELEGRAM_APP_URL=https://your-app-url.com ,
+BUCKET_NAME=your-s3-bucket-name , 
+REGION=your-bucket-region .
 3. run the service by :./run_all.sh
 be careful when running run_all.sh the init_ngrok.sh will kill all ngrok tunnels if you dont want that you can delete init_ngrok.sh  from the run_all.sh and change the TELEGRAM_APP_URL in the .env file manually
 4. start sending photos to the bot.
